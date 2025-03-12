@@ -224,8 +224,8 @@ function updateScore(points) {
     
     // 難易度の調整（スコアに応じて速度を上げる）
     // 10段階難易度に合わせて調整
-    gameState.speed = 0.2 + (gameState.score / 1000) * 0.1 * (gameState.difficulty / 3);
-    gameState.obstacleSpawnRate = Math.max(0.5, 1.5 - (gameState.score / 2000) * 0.5 * (gameState.difficulty / 3));
+    gameState.speed = 0.2 + (gameState.score / 1000) * 0.1 * gameState.difficulty;
+    gameState.obstacleSpawnRate = Math.max(0.5, 1.5 - (gameState.score / 2000) * 0.5 * gameState.difficulty);
 }
 
 // ゲームオーバー処理
@@ -243,8 +243,8 @@ function resetGame() {
     scoreValue.textContent = '0';
     
     // 速度リセット（10段階難易度に合わせて調整）
-    gameState.speed = 0.2 * (gameState.difficulty / 3);
-    gameState.obstacleSpawnRate = 1.5 / (gameState.difficulty / 3);
+    gameState.speed = 0.2 * gameState.difficulty;
+    gameState.obstacleSpawnRate = 1.5 / gameState.difficulty;
     gameState.lastObstacleTime = 0;
     
     // 障害物の削除
