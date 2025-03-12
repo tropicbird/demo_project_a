@@ -3,11 +3,11 @@ const gameState = {
     isPlaying: false,
     isPaused: false,
     score: 0,
-    difficulty: 1, // 1: 簡単, 2: 普通, 3: 難しい
+    difficulty: 1, // 1-10の難易度
     speed: 0.2,
     obstacleSpawnRate: 1.5, // 秒
     lastObstacleTime: 0,
-    difficultyLevels: ['簡単', '普通', '難しい']
+    difficultyLevels: ['レベル1', 'レベル2', 'レベル3', 'レベル4', 'レベル5', 'レベル6', 'レベル7', 'レベル8', 'レベル9', 'レベル10']
 };
 
 // DOM要素
@@ -223,8 +223,9 @@ function updateScore(points) {
     scoreValue.textContent = gameState.score;
     
     // 難易度の調整（スコアに応じて速度を上げる）
-    gameState.speed = 0.2 + (gameState.score / 1000) * 0.1 * gameState.difficulty;
-    gameState.obstacleSpawnRate = Math.max(0.5, 1.5 - (gameState.score / 2000) * 0.5 * gameState.difficulty);
+    // 10段階難易度に合わせて調整
+    gameState.speed = 0.2 + (gameState.score / 1000) * 0.1 * (gameState.difficulty / 3);
+    gameState.obstacleSpawnRate = Math.max(0.5, 1.5 - (gameState.score / 2000) * 0.5 * (gameState.difficulty / 3));
 }
 
 // ゲームオーバー処理
@@ -241,9 +242,9 @@ function resetGame() {
     gameState.score = 0;
     scoreValue.textContent = '0';
     
-    // 速度リセット
-    gameState.speed = 0.2 * gameState.difficulty;
-    gameState.obstacleSpawnRate = 1.5 / gameState.difficulty;
+    // 速度リセット（10段階難易度に合わせて調整）
+    gameState.speed = 0.2 * (gameState.difficulty / 3);
+    gameState.obstacleSpawnRate = 1.5 / (gameState.difficulty / 3);
     gameState.lastObstacleTime = 0;
     
     // 障害物の削除
@@ -422,7 +423,7 @@ function goToHome() {
 
 // 難易度変更
 function changeDifficulty() {
-    gameState.difficulty = (gameState.difficulty % 3) + 1;
+    gameState.difficulty = (gameState.difficulty % 10) + 1;
     difficultyLevel.textContent = gameState.difficultyLevels[gameState.difficulty - 1];
 }
 
