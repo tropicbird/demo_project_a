@@ -1,0 +1,6 @@
+---
+description: Agentモードでコードを編集するときのルール
+globs: 
+alwaysApply: false
+---
+- Agentモードでコードを編集した後は、必ずdocker compose up –buildを行い、イメージの再ビルドやコンテナを起動がうまくいくことを確認する。

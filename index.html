@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D障害物回避ゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="home-screen" class="screen">
+            <h1>3D障害物回避ゲーム</h1>
+            <button id="start-button">ゲーム開始</button>
+            <div class="difficulty-selector">
+                <p>難易度: <span id="difficulty-level">普通</span></p>
+                <button id="difficulty-button">変更</button>
+            </div>
+        </div>
+        
+        <div id="game-screen" class="screen hidden">
+            <div id="score">スコア: <span id="score-value">0</span></div>
+            <button id="pause-button">一時停止</button>
+        </div>
+        
+        <div id="game-over-screen" class="screen hidden">
+            <h2>ゲームオーバー</h2>
+            <p>最終スコア: <span id="final-score">0</span></p>
+            <button id="restart-button">もう一度プレイ</button>
+            <button id="home-button">ホームに戻る</button>
+        </div>
+    </div>
+
+    <!-- Three.jsライブラリの読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    
+    <!-- ゲームのスクリプト -->
+    <script src="game.js"></script>
+</body>
+</html> 
